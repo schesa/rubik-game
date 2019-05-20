@@ -3,11 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Rubik's Cube</title>
-        <meta name="description" content="A WebGL animated Rubik's cube by Michiel van der Blonk">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="static/main.css">
+        <link rel="stylesheet" href="style.css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="js/jquery.easing.min.js"></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -29,7 +27,7 @@
             const highp vec4 lightColor = vec4(.2,.2,.2,1);
 
             void main(void) {
-                if (lighting) {
+                if (lighting) {              
                     highp vec3 position = position.xyz / position.w;
                     highp vec3 eyeDirection = normalize(eyePosition - position);
                     highp vec3 lightPosition = lightPosition.xyz / lightPosition.w;
@@ -59,17 +57,31 @@
                 gl_Position = projectionMatrix * position;
                 normal = normalize(normalMatrix * vertexNormal);
             }
-       </script>
+        </script>
     </head>
     <body>
         <div class="container">
             <div class="row-fluid">
-                <h3>Rubik's Cube</h3>
-                <h5 class="text-muted">A Rubik's Cube with WebGL</h5>
+               
+                <div class="help-block">
+                    <div>Click and drag with <span class="control">left mouse</span> to rotate a layer</div>
+                    <div>Click and drag with <span class="control">right mouse</span> to rotate the Rubik's Cube</div>
+                </div>
             </div>
             <div class="row">
                 <div class="glube col-md-3">
-                    <canvas data-alg="" data-type="solver" data-stickers=""></canvas>
+                    <canvas data-alg="RU-RURURU-R-U-R2" data-type="solver" data-stickers="FULL"></canvas>
+                    <div>
+                       <div class="scramble">
+                            <label>Length</label> 
+                            <input type="number" class="scramble-length" min="1" value="20" />
+                        </div>
+                        <div class="alg">
+                            <label>Algorithm</label> 
+                            <input class="algorithm form-control" placeholder="Algorithm" type="text" />
+                        </div>
+                        <button class="run-alg btn btn-info btn-sm"><span class="glyphicon glyphicon-play"></span></button>                         
+                    </div>
                 </div>
             </div>
         </div>
